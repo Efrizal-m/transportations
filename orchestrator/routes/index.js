@@ -1,8 +1,10 @@
 const router = require('express').Router()
+const userRouter = require('./user')
 const BikeController = require('../controllers/bikeController')
 const CarController = require('../controllers/carController')
 const MotorcycleController = require('../controllers/motorcycleController')
 
+router.use('/', userRouter)
 router.get('/bike', BikeController.find)
 router.post('/bike', BikeController.create)
 router.get('/bike/:id', BikeController.findById)
