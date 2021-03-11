@@ -1,27 +1,36 @@
 module.exports = {
     apps : [
         {
-            name    : 'entertainme - Client',
-            script  : 'cd client && npm i && npm start',
+            name    : 'service - orchestrator',
+            script  : 'cd orchestrator && npm i && nodemon app.js',
             env     : {
                 PORT    : 4000
             }
         },
         {
-            name    : 'entertainme - Service Movies',
-            script  : 'cd server/services/movies && npm i && nodemon app.js',
+            name    : 'service - Service Bike',
+            script  : 'cd services/bike && npm i && nodemon app.js',
             env     : {
-                DATABASE_NAME: 'entertainme',
-                COLLECTION_NAME: 'movies',
+                DATABASE_NAME: 'efrizal',
+                COLLECTION_NAME: 'Bike',
                 PORT    : 4001
             }
         },
         {
-            name    : 'entertainme - Service TV Series',
-            script  : 'cd server/services/series && npm i && nodemon app.js',
+            name    : 'service - Service Car',
+            script  : 'cd services/car && npm i && nodemon app.js',
             env     : {
-                DATABASE_NAME: 'entertainme',
-                COLLECTION_NAME: 'tvSeries',
+                DATABASE_NAME: 'efrizal',
+                COLLECTION_NAME: 'Car',
+                PORT    : 4002
+            }
+        },
+        {
+            name    : 'service - Service Motorcycle',
+            script  : 'cd services/motorcycle && npm i && nodemon app.js',
+            env     : {
+                DATABASE_NAME: 'efrizal',
+                COLLECTION_NAME: 'Motorcycle',
                 PORT    : 4002
             }
         }
