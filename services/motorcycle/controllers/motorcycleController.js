@@ -1,0 +1,88 @@
+const Motorcycle = require('../models/motorcycle')
+
+class MotorcycleController {
+    static find(req, res, next) {
+        Motorcycle.find()
+        .then(result => {
+            res.status(200)
+            res.send(result)
+        })
+        .catch(error => {
+            res.status(500)
+            res.send({message:'Internal Server Error'})
+        })
+    }
+    
+    static findById(req, res, next) {
+        const { id } = req.params
+        Motorcycle.findOne(id)
+        .then(result => {
+            res.status(200)
+            res.send(result)
+        })
+        .catch(error => {
+            res.status(500)
+            res.send({message:'Internal Server Error'})
+        })
+    }
+
+    static findByName(req, res, next) {
+        const { name } = req.params
+        Motorcycle.findOne(name)
+        .then(result => {
+            res.status(200)
+            res.send(result)
+        })
+        .catch(error => {
+            res.status(500)
+            res.send({message:'Internal Server Error'})
+        })
+    }
+
+    static create(req, res, next) {
+        const { name, year, type, color, price } = req.body
+        const payload = { name, year, type, color, price }
+
+        Motorcycle.create(payload)
+        .then(result => {
+            res.status(201)
+            res.send(result.ops[0])
+        })
+        .catch(error => {
+            res.status(500)
+            res.send({message:'Internal Server Error'})
+        })
+    }
+
+    static update(req, res, next) {
+        const { id } = req.params
+        const { name, year, type, color, price } = req.body
+        const payload = { name, year, type, color, price }
+
+        Motorcycle.update(id, payload)
+        .then(result => {
+            res.status(200)
+            res.send(result.value)
+        })
+        .catch(error => {
+            res.status(500)
+            res.send({message:'Internal Server Error'})
+        })
+    }
+
+    static delete(req, res, next) {
+        const { id } = req.params
+        Motorcycle.delete(id)
+        .then(result => {
+            res.status(200)
+            res.send({_id:id, message:'succes to delete'})
+        })
+        .catch(error => {
+            res.status(500)
+            res.send({message:'Internal Server Error'})
+        })
+    }
+
+}
+
+module.exports = MotorcycleController
