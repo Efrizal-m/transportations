@@ -1,0 +1,26 @@
+version: '3'
+
+services: 
+  mongo: 
+    image: "mongo:latest"
+    ports:
+      - "17017:27017"
+    command: mongod
+  bike:
+    depends_on: 
+    - mongo
+    build: ./bike
+    ports: 
+      - "4001:4001"
+  car:
+    depends_on: 
+    - mongo
+    build: ./car
+    ports: 
+      - "4002:4002"
+  motorcycle:
+    depends_on: 
+    - mongo
+    build: ./motorcycle
+    ports: 
+      - "4003:4003"
