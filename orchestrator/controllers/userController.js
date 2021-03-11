@@ -5,9 +5,9 @@ const { generateToken } = require("../helpers/jwt");
 class UserController {   
     static async register(req, res, next) {
         try {      
-            let { username, email, password } = req.body;
+            let { username, email, password, accountNumber, iDCardNumber } = req.body;
             if (!username) { username = email.split('@')[0] }
-            const payload = { username, email, password }
+            const payload = { username, email, password, accountNumber, iDCardNumber }
             const data = await User.login(payload);
             if (!data) {
                 const response = await User.register(payload)
